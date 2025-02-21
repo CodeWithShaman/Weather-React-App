@@ -1,0 +1,115 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: rgba(154, 18, 208, 0.836); */
+  background-color: #000000e9;
+  /* background: linear-gradient(rgba(75,30,133,1) to rgba(75,30,133,0.01)); */
+  /* background-color: rgba(65, 65, 65, 0.308); */
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  /* border: 2px solid red; */
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffffec;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  /* color: #ccc; */
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 34px;
+  background-color: #4c87afb9;
+  border: none;
+
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+/* button:hover {
+  background-color: #45a049;
+} */
+
+.loading {
+  font-size: 1.5rem;
+  color: #4caf4fc8;
+}
+
+.error {
+  color: red;
+  font-size: 1.5rem;
+}
+
+.weather-info {
+  background: linear-gradient(to bottom right, rgba(75, 30, 133, 1), rgba(75, 30, 133, 0.01));
+  /* background: linear-gradient(rgba(75,30,133,1) to rgba(75,30,133,0.01)); */
+  border: 2px solid rgba(75,30,133,0.5);
+  padding: 7px 60px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: space-between;
+  /* background-color: rgba(65, 65, 65, 0.308); */
+  backdrop-filter: blur(30px);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.location h2 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.weather-details {
+  margin: 20px 0;
+}
+
+.weather-details img {
+  width: 100px;
+  height: 100px;
+}
+
+.temperature h1 {
+  font-size: 4rem;
+  margin: 10px 0;
+}
+
+.temperature h3 {
+  font-size: 1.5rem;
+  margin: 5px 0;
+}
+
+.wind h3 {
+  font-size: 1.5rem;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
