@@ -57,6 +57,11 @@ function App() {
     return dateFormat(new Date(), "dddd, mmmm dS, h:MM TT");
   };
 
+  // Function to handle search button click
+  const handleSearchClick = () => {
+    getWeatherCity(city); // Fetch weather data for the city in the input field
+  };
+
   return (
     <div className="app">
       <h1 className="title">Weather App</h1>
@@ -70,6 +75,12 @@ function App() {
           onChange={handleInputChange} // Call function on input change
           placeholder="Enter City Name"
         />
+
+        {/* Search Button */}
+        <button onClick={handleSearchClick} className="search-button">
+          <Search />
+          {/* SEARCH */}
+        </button>
 
         {/* Display filtered suggestions */}
         {suggestions.length > 0 && (

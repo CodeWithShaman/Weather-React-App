@@ -20,9 +20,13 @@ body {
 
 .title {
   font-size: 3rem;
-  margin-bottom: 20px;
-  color: #ffffffec;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* margin-bottom: 20px; */
+  color: #aac705c6;
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-style: oblique; */
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 .input-wrapper {
@@ -42,7 +46,7 @@ input {
 }
 
 button {
-  padding: 10px 34px;
+  padding: 10px 4px;
   background-color: #4c87afb9;
   border: none;
 
@@ -103,13 +107,13 @@ button {
 }
 
 button {
-  padding: 10px;
+  padding: 7px 10px;
   font-size: 16px;
   cursor: pointer;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .suggestions {
@@ -118,6 +122,8 @@ button {
   max-height: 150px;
   overflow-y: auto;
   width: 300px;
+  z-index: 1;
+  /* scrollbar-width: 5px; */
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: white;
@@ -170,3 +176,83 @@ button {
   display: flex;
   align-items: center;
 }
+/* ------------------------------- */
+/* Base styles */ 
+/* Media queries for responsiveness */
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .input-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input {
+    max-width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .search-button {
+    max-width: 90%;
+    margin-top: 10px;
+  }
+
+  .suggestions {
+    max-width: 90%;
+  }
+
+  .weather-info {
+    padding: 10px;
+  }
+
+  .location h2 {
+    font-size: 1.2rem;
+  }
+
+  .weather-details img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .temperature h1 {
+    font-size: 2rem;
+  }
+
+  .wind h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  .input-wrapper {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .input {
+    max-width: 60%;
+  }
+
+  .search-button {
+    margin-left: 10px;
+  }
+
+  .suggestions {
+    max-width: 60%;
+  }
+
+  .weather-info {
+    padding: 20px;
+  }
+
+  .location h2 {
+    font-size: 1.5rem;
+  }
+
+  .weather-details img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
