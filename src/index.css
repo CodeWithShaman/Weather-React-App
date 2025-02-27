@@ -110,6 +110,7 @@ button {
   padding: 7px 10px;
   font-size: 16px;
   cursor: pointer;
+  margin-bottom: 5px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -194,7 +195,7 @@ button {
 
   .search-button {
     max-width: 90%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
   }
 
   .suggestions {
@@ -217,6 +218,7 @@ button {
   .temperature h1 {
     font-size: 2rem;
   }
+  
 
   .wind h3 {
     font-size: 1rem;
@@ -243,7 +245,7 @@ button {
   }
 
   .weather-info {
-    padding: 20px;
+    padding: 7px 60px;
   }
 
   .location h2 {
