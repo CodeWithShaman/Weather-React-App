@@ -12,18 +12,18 @@ function App() {
   const [suggestions, setSuggestions] = useState([]); // To hold filtered city suggestions
 
   // Predefined cities list for suggestions
-  const cities = ['Hyderabad,PK', 'Hyderabad,IND', 'Karachi,PK',];
+  const cities = ['Hyderabad,PK', 'Karachi,PK', 'Hyderabad,IND'];
 
   // Function to fetch weather data for the selected city
-  const getWeatherCity = async () => {
-    if (!city.trim()) return;
+  const getWeatherCity = async (selectedCity) => {
+    if (!selectedCity.trim()) return;
     setLoading(true);
     setError('');
     try {
-      const data = await getWeather(city); // API call to get weather data
+      const data = await getWeather(selectedCity); // API call to get weather data
       setWeather(data);
-      setCity(''); // Clear the city after fetching
-      setSuggestions([]); // Clear suggestions after fetching
+      setCity(selectedCity); // Update the input field with the selected city
+      setSuggestions([]); // Clear suggestions
     } catch (error) {
       setError('City not found!');
       setWeather(null);
@@ -49,9 +49,7 @@ function App() {
 
   // Function to handle selecting a city from the suggestions list
   const handleSelectCity = (cityName) => {
-    setCity(cityName);
-    setSuggestions([]); // Clear the suggestions once a city is selected
-    getWeatherCity(); // Fetch weather for the selected city
+    getWeatherCity(cityName); // Fetch weather data for the selected city
   };
 
   // Render current date and time
@@ -72,11 +70,6 @@ function App() {
           onChange={handleInputChange} // Call function on input change
           placeholder="Enter City Name"
         />
-
-        {/* Search button */}
-        <button onClick={getWeatherCity}>
-          <Search />
-        </button>
 
         {/* Display filtered suggestions */}
         {suggestions.length > 0 && (
