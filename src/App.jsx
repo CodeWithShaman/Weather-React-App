@@ -1,24 +1,29 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Search, MapPin, Wind } from 'react-feather';
-import getWeather from './components/Api';
+import getWeather from './components/Api'; // Assuming this is where your weather API function is
 import dateFormat from 'dateformat';
-// import Card from './components/Card.jsx'
 import './App.css';
 
 function App() {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState(''); // Stores the current input value
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [suggestions, setSuggestions] = useState([]); // To hold filtered city suggestions
 
+  // Predefined cities list for suggestions
+  const cities = ['Hyderabad,PK', 'Hyderabad,IND', 'Karachi,PK',];
+
+  // Function to fetch weather data for the selected city
   const getWeatherCity = async () => {
     if (!city.trim()) return;
     setLoading(true);
     setError('');
     try {
-      const data = await getWeather(city);
+      const data = await getWeather(city); // API call to get weather data
       setWeather(data);
-      setCity('');
+      setCity(''); // Clear the city after fetching
+      setSuggestions([]); // Clear suggestions after fetching
     } catch (error) {
       setError('City not found!');
       setWeather(null);
@@ -26,6 +31,30 @@ function App() {
     setLoading(false);
   };
 
+  // Function to handle input changes and filter city suggestions
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setCity(query);
+
+    // Filter cities based on input
+    if (query) {
+      const filteredCities = cities.filter((cityName) =>
+        cityName.toLowerCase().includes(query.toLowerCase()) // case-insensitive search
+      );
+      setSuggestions(filteredCities);
+    } else {
+      setSuggestions([]); // Clear suggestions if input is empty
+    }
+  };
+
+  // Function to handle selecting a city from the suggestions list
+  const handleSelectCity = (cityName) => {
+    setCity(cityName);
+    setSuggestions([]); // Clear the suggestions once a city is selected
+    getWeatherCity(); // Fetch weather for the selected city
+  };
+
+  // Render current date and time
   const renderDate = () => {
     return dateFormat(new Date(), "dddd, mmmm dS, h:MM TT");
   };
@@ -33,27 +62,44 @@ function App() {
   return (
     <div className="app">
       <h1 className="title">Weather App</h1>
-      <br />
+
       <div className="input-wrapper">
-        <input className='input'
+        {/* Search input field */}
+        <input
           type="text"
+          className="input"
           value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter location"
+          onChange={handleInputChange} // Call function on input change
+          placeholder="Enter City Name"
         />
+
+        {/* Search button */}
         <button onClick={getWeatherCity}>
           <Search />
         </button>
+
+        {/* Display filtered suggestions */}
+        {suggestions.length > 0 && (
+          <ul className="suggestions">
+            {suggestions.map((suggestion, index) => (
+              <li key={index} onClick={() => handleSelectCity(suggestion)}>
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
+      {/* Loading state */}
       {loading && <div className="loading">Loading...</div>}
 
+      {/* Error state */}
       {error && <div className="error">{error}</div>}
 
+      {/* Weather data display */}
       {weather && weather.weather && (
         <div className="weather-info">
           <div className="location">
-            
             <MapPin />
             <h2>
               {weather.name}, {weather.sys.country}
